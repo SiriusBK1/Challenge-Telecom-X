@@ -10,48 +10,76 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 
-#  Análisis de Churn para Telecom X
+# Telecom X_1: Análisis Exploratorio de Datos (EDA) de Churn en Telecomunicaciones
 
-Este proyecto realiza un análisis completo del abandono de clientes (churn) en una empresa de telecomunicaciones ficticia, **Telecom X**. 
-Utiliza Python y librerías de análisis de datos para extraer insights accionables y proponer estrategias de retención.
-
----
-
-##  Objetivos
-
-- Identificar patrones y variables asociadas al churn.
-- Visualizar diferencias entre clientes que se quedan y los que se van.
-- Proponer recomendaciones estratégicas basadas en los hallazgos.
-
-##  Tecnologías utilizadas
-
-- Python 3
-- pandas, numpy
-- matplotlib, seaborn
-- Jupyter Notebook
+Proyecto de análisis exploratorio de datos para identificar patrones y factores asociados a la cancelación de clientes (churn) en una empresa de telecomunicaciones.  
+Desarrollado por Adrián | Branding: SiriusBk  
 
 ---
 
-##  Principales insights
-
-- Los contratos mensuales tienen mayor tasa de churn.
-- Clientes con menor antigüedad (< 6 meses) son más propensos a cancelar.
-- Cargos mensuales elevados correlacionan con mayor abandono.
-- El método de pago `Electronic check` está asociado a mayor churn.
-- Los clientes que contratan más servicios tienden a permanecer.
+##  Objetivo  
+Explorar y visualizar relaciones clave en los datos de clientes para entender qué variables (género, tipo de contrato, cargos mensuales, etc.) están más asociadas al churn.  
 
 ---
 
-##  Recomendaciones estratégicas
+##  Metodología  
 
-- Incentivar contratos anuales o bienales.
-- Diseñar campañas de retención para clientes nuevos.
-- Revisar la estructura de precios y percepción de valor.
-- Promover métodos de pago más estables.
-- Ofrecer paquetes integrados de servicios como herramienta de fidelización.
+### 1. **Extracción y Transformación**  
+- Carga de datos desde un archivo JSON.  
+- Normalización de estructuras anidadas.  
+- Limpieza y conversión de tipos:  
+  - Columnas binarias (`Churn`, `Partner`) convertidas a booleanos.  
+  - Variables categóricas (`PaymentMethod`, `Contract`) tipificadas como `category`.  
+  - Manejo de valores nulos en `Charges.Total` (imputación con la mediana).  
+  - Validación de formatos en `customerID` (ejemplo: `1234-ABCDE`).  
 
-## Contacto
-Proyecto desarrollado por Adrian como parte de su formación en análisis de datos.
-¿Comentarios o sugerencias? Puedes contactarme vía GitHub Issues
+### 2. **Análisis Exploratorio**  
+- Visualización de distribuciones y relaciones mediante:  
+  - Gráficos de barras (churn por género, contrato, método de pago).  
+  - Histogramas (cargos mensuales vs. churn).  
+  - Heatmaps (correlaciones entre variables numéricas).  
+  - Gráficos de dispersión (relación entre cargos mensuales y totales).  
+
 ---
 
+##  Principales Hallazgos  
+
+###  **Distribución de Churn**  
+- **27% de los clientes cancelaron** el servicio (desequilibrio de clases típico en churn).  
+- **Variables clave asociadas**:  
+  - **Contrato**: Clientes con contratos mensuales tienen mayor churn (≈43%) vs. bienales (≈12%).  
+  - **Antigüedad (`tenure`)**: Clientes nuevos (<6 meses) son más propensos a cancelar.  
+  - **Cargos mensuales**: Clientes que pagan >$90 tienen mayor tasa de churn.  
+
+###  **Correlaciones**  
+- **Negativa fuerte**: `tenure` vs. `Churn` (-0.35).  
+- **Positiva fuerte**: `Charges.Monthly` vs. `Charges.Total` (0.65).  
+
+###  **Servicios Adicionales**  
+- Clientes con **soporte técnico (`TechSupport`) o seguridad en línea (`OnlineSecurity`)** presentan menor churn.  
+
+---
+
+
+Recomendaciones Iniciales
+
+Focalizar retención en clientes con contratos mensuales y antigüedad <6 meses.
+Revisar precios de planes con cargos >$90 para mejorar percepción de valor.
+Promover servicios adicionales (ej: soporte técnico) como estrategia de fidelización.
+
+Tecnologías Utilizadas
+Python: pandas, numpy, seaborn, matplotlib.
+
+Herramientas: Google Colab, Jupyter Notebook.
+
+Cómo Reproducir
+
+git clone https://github.com/SiriusBK1/Challenge-Telecom-X_1
+pip install -r requirements.txt  # pandas, seaborn, matplotlib
+jupyter notebook Telecom_X_1_EDA.ipynb
+
+
+👤 Autor
+Adrián — Estudiante de Data Science
+🔗 GitHub: SiriusBk
+📬 Contacto: aacevedovergara@gmail.com
